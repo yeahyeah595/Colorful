@@ -83,6 +83,33 @@ body {
     center top/cover;
 }
 
+.buttons button#prev {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+}
+
+.buttons button#next {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+}
+
+.buttons button {
+  border: 2px solid #e5ebf3;
+  background-color: transparent;
+  color: #e5ebf3;
+  cursor: pointer;
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+
+.buttons button:hover {
+  background-color: #e5ebf3;
+  color: #362a2b;
+}
+
 @media (min-width: 640px) and (min-height: 640px) {
   .slide .content {
     bottom: 70px;
@@ -115,9 +142,16 @@ body {
     <div class="slide"></div>
     <div class="slide"></div>
 
+  </div>
+  <div class="buttons">
+    <button id="prev"><i class="fas fa-arrow-left"></i></button>
+    <button id="next"><i class="fas fa-arrow-right"></i></button>
+  </div>
   <!-- partial -->
   <script>
     const slides = document.querySelectorAll(".slide");
+    const nextButton = document.getElementById("next");
+    const prevButton = document.getElementById("prev");
     const auto = true;
     const intervalTime = 5000;
     let slideInterval;
@@ -149,6 +183,8 @@ body {
         slideInterval = setInterval(nextSlide, intervalTime);
       }
     });
+    prevButton.addEventListener("click", () => {
+      prevSlide();
       if (auto) {
         clearInterval(slideInterval);
         slideInterval = setInterval(nextSlide, intervalTime);
